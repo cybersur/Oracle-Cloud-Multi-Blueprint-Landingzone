@@ -1,0 +1,9 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    { "label": "tf fmt", "type": "shell", "command": "terraform fmt -recursive", "group": "build" },
+    { "label": "tf validate", "type": "shell", "command": "terraform validate", "group": "build" },
+    { "label": "tf init", "type": "shell", "command": "terraform init" },
+    { "label": "tf plan (env/dev)", "type": "shell", "command": "cd env/dev && terraform init && terraform plan -var-file=terraform.tfvars" }
+  ]
+}
