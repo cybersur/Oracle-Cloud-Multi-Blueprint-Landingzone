@@ -1,15 +1,16 @@
 # Branch Policy and Governance Workflow
  
-## 1. Purpose
+## 1. What is the Purpose?
  
 This document defines the **branching strategy**, **workflow governance**, and **change-control policies** for the  
 **p-pm-tgs-oci-landingzone** repository.  
-Its purpose is to maintain code integrity, ensure auditability, and enforce controlled progression of changes  
+
+The primary purpose is to maintain code integrity, ensuring auditability, and enforce controlled progression of changes  
 from feature development through integration and production readiness.
  
 ---
  
-## 2. Branch Hierarchy Overview
+## 2. Understanding the "Branch Hierarchy" structured overview.
  
 The repository follows a **three-tier branch model** aligned to Dev/Test/Prod maturity:
  
