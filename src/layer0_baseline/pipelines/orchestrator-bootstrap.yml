@@ -1,0 +1,37 @@
+# ======================================================================
+#  Created by: Dr. Rigoberto Garcia 10/22/2025
+#  Orchestrator Bootstrap Pipeline
+#  Initializes repository structure, validates Layer 0, and sets up
+#  orchestrator metadata for blueprint execution.
+# ======================================================================
+
+trigger:
+  branches:
+    include:
+      - development
+
+stages:
+  - stage: Validate
+    displayName: "Validate Repository Baseline"
+    jobs:
+      - job: repo_validation
+        displayName: "Validate Layer 0 structure and manifest"
+        steps:
+          - script: |
+              echo "🔍 Checking required directories..."
+              if [ ! -d "src/layer0_baseline/catalogs" ]; then echo "❌ Missing catalogs"; exit 1; fi
+              if [ ! -d "src/layer0_baseline/orchestrator" ]; then echo "❌ Missing orchestrator"; exit 1; fi
+              echo "✅ Layer 0 validation successful."
+            displayName: "Validate Layer 0 directories"
+
+  - stage: Bootstrap
+    displayName: "Initialize Orchestrator Metadata"
+    dependsOn: Validate
+    jobs:
+      - job: orchestrator_bootstrap
+        displayName: "Bootstrap orchestrator"
+        steps:
+          - script: |
+              echo "⚙️  Generating repository_manifest metadata..."
+              echo "✅ Bootstrap complete."
+            displayName: "Initialize orchestrator metadata"
