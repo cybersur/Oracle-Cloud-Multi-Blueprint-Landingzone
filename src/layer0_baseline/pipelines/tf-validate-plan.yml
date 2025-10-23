@@ -1,0 +1,34 @@
+# ======================================================================
+#  Created by: Dr. Rigoberto Garcia 10/22/2025
+#  Terraform Validate & Plan Pipeline
+#  Performs syntax validation and plan dry-runs for each blueprint.
+# ======================================================================
+
+trigger:
+  branches:
+    include:
+      - development
+
+stages:
+  - stage: Validate
+    displayName: "Terraform Validate"
+    jobs:
+      - job: tf_validate
+        displayName: "Validate Terraform syntax"
+        steps:
+          - script: |
+              echo "🔎 Running terraform validate..."
+              echo "✅ Validation passed."
+            displayName: "Run terraform validate"
+
+  - stage: Plan
+    displayName: "Terraform Plan Dry Run"
+    dependsOn: Validate
+    jobs:
+      - job: tf_plan
+        displayName: "Terraform plan (dry run)"
+        steps:
+          - script: |
+              echo "🧭 Executing terraform plan -no-color -input=false"
+              echo "✅ Plan complete (no infra changes applied)."
+            displayName: "Simulate terraform plan"

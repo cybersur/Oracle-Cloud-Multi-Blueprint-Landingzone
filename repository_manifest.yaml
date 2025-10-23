@@ -1,0 +1,53 @@
+# ======================================================================
+#  Created by: Dr. Rigoberto Garcia 10/22/2025
+#  TODO: Create a repository manifest file for OCI Landing Zone multi-blueprint orchestration. 
+#   
+# ======================================================================
+
+@"
+repository:
+  name: "p-pm-tgs-oci-landingzone"
+  description: "OCI Landing Zone multi-blueprint orchestration repository"
+  version: "1.0.0"
+  default_branch: "development"
+
+layers:
+  - id: 0
+    name: "layer0_baseline"
+    purpose: "Blueprint orchestration, catalogs, pipelines, and state management"
+    path: "src/layer0_baseline"
+  - id: 1
+    name: "layer1_foundation"
+    purpose: "Networking, governance, and shared security baseline"
+    path: "src/layer1_foundation"
+  - id: 2
+    name: "layer2_operational"
+    purpose: "Compartment-level workloads for Dev/Test/Prod"
+    path: "src/layer2_operational"
+  - id: 3
+    name: "layer3_automation"
+    purpose: "CI/CD pipelines, tfvars, teardown, and orchestration automation"
+    path: "src/layer3_automation"
+
+orchestrator:
+  path: "src/layer0_baseline/orchestrator"
+  components:
+    - orchestration_hub.tf
+    - workflow_engine.tf
+    - artifact_registry.tf
+    - service_catalog.tf
+  catalogs_path: "src/layer0_baseline/catalogs"
+  pipelines_path: "src/layer0_baseline/pipelines"
+  state_path: "src/layer0_baseline/state"
+
+governance:
+  documentation:
+    - "docs/governance/branch-policy.md"
+    - "docs/governance/repo-rules.md"
+  enforcement:
+    branch_protection: true
+    require_signed_commits: true
+    require_pr_review: true
+
+metadata_version: "2025.10.22"
+"@ | Out-File -FilePath "repository_manifest.yaml" -Encoding utf8

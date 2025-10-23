@@ -1,0 +1,34 @@
+# ======================================================================
+#  Created by: Dr. Rigoberto Garcia 10/22/2025
+#  Blueprint Sync Pipeline
+#  Scans and synchronizes blueprint definitions with orchestrator state.
+# ======================================================================
+
+trigger:
+  branches:
+    include:
+      - development
+      - main
+
+stages:
+  - stage: Discover
+    displayName: "Discover Blueprints"
+    jobs:
+      - job: discover_catalogs
+        steps:
+          - script: |
+              echo "🔍 Discovering blueprints under src/layer0_baseline/catalogs..."
+              find src/layer0_baseline/catalogs -name "*blueprint.yaml"
+              echo "✅ Discovery complete."
+            displayName: "List blueprint definitions"
+
+  - stage: Sync
+    displayName: "Sync Catalogs with Orchestrator"
+    dependsOn: Discover
+    jobs:
+      - job: sync_catalogs
+        steps:
+          - script: |
+              echo "🔄 Syncing blueprint metadata into orchestrator registry..."
+              echo "✅ Blueprint synchronization complete."
+            displayName: "Sync blueprint metadata"

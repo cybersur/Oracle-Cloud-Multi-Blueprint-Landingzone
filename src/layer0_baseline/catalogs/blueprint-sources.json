@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "_metadata": {
     "created_by": "Dr. Rigoberto Garcia",
     "created_on": "2025-10-23",
@@ -32,3 +33,39 @@
     }
   ]
 }
+=======
+    "_metadata": {
+      "created_by": "Dr. Rigoberto Garcia",
+      "created_on": "2025-10-23",
+      "purpose": "List of upstream OCI Landing Zone blueprint sources to mirror into our repository",
+      "notes": "Mirror from OCI Landing Zones GitHub org"
+    },
+    "sources": [
+      {
+        "id": "core-lz",
+        "url": "https://github.com/oci-landing-zones/terraform-oci-core-landingzone.git",
+        "ref": "main",
+        "dest": "src/layer0_baseline/catalogs/core-lz/upstream",
+        "includePaths": ["**/*"],
+        "excludePaths": [".git", ".github"]
+      },
+      {
+        "id": "one-oe",
+        "url": "https://github.com/oci-landing-zones/oci-landing-zone-operating-entities.git",
+        "ref": "main",
+        "dest": "src/layer0_baseline/catalogs/one-oe/upstream",
+        "includePaths": ["**/*"],
+        "excludePaths": [".git", ".github"]
+      },
+      {
+        "id": "multi-oe",
+        "url": "https://github.com/oci-landing-zones/oci-landing-zone-operating-entities.git",
+        "ref": "main",
+        "dest": "src/layer0_baseline/catalogs/multi-oe/upstream",
+        "includePaths": ["**/*"],
+        "excludePaths": [".git", ".github"]
+      }
+    ]
+  }
+  
+>>>>>>> cc2eda2b88092dee6c0f8f4f7444a1bdff5884e9
