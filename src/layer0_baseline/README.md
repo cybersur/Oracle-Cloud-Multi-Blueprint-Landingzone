@@ -1,3 +1,12 @@
+# ======================================================================
+#  Created by: Dr. Rigoberto Garcia
+#  Created on: 10/21/2025
+#  Updated on: 10/23/2025
+#  Purpose: Educational purpose, to introduce a best practice or organizing the code when using Orchestrator, or Tenant Factories
+#  Notes:   Part of the p-pm-tgs-oci-landingzone repository for Tek Systems Global Services.
+# ======================================================================
+
+
 # Layer 0 — Baseline & Orchestrator Foundation
 
 I understand that some might look at this repo architecture and will say, that is not needed.  Its a waste of time.  However think about this, what happens as the architecture gets complex, is not a best practice to organize our code.  Developers are use to dump things anywhere.  This repository has been intentionally structured in **layers** to separate responsibility, reduce blast radius, and allow each plane of operation to evolve independently.  
