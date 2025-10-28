@@ -10,7 +10,7 @@
         "id": "core-lz",
         "url": "https://github.com/oci-landing-zones/terraform-oci-core-landingzone",
         "ref": "main",
-        "dest": "src/layer0_baseline/catalogs/core-lz/upstream",
+        "dest": "src/layer0_baseline/catalogs/core-lz/upstream4",
         "includePaths": ["**/*"],
         "excludePaths": [".git", ".github"]
       },
