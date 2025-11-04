@@ -1,0 +1,23 @@
+{
+    "sources": [
+      {
+        "id": "core-lz",
+        "url": "https://github.com/oci-landing-zones/terraform-oci-core-landingzone.git",
+        "ref": "main",
+        "dest": "src/layer0_baseline/catalogs/core-lz/upstream"
+      },
+      {
+        "id": "one-oe",
+        "url": "https://github.com/oci-landing-zones/oci-landing-zone-operating-entities.git",
+        "ref": "master",
+        "dest": "src/layer0_baseline/catalogs/one-oe/upstream"
+      },
+      {
+        "id": "multi-oe",
+        "url": "https://github.com/oci-landing-zones/oci-landing-zone-operating-entities.git",
+        "ref": "master",
+        "dest": "src/layer0_baseline/catalogs/multi-oe/upstream"
+      }
+    ]
+  }
+  

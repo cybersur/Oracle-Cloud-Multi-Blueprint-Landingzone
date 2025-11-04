@@ -1,0 +1,65 @@
+# ======================================================================
+#  Created by: Dr. Rigoberto Garcia 11/01/2025
+#  Blueprint Sync Pipeline
+#  Scans and synchronizes blueprint definitions with orchestrator state.
+# ======================================================================
+#  Layer 0 – Core Landing Zone (Demo Deployment)
+#  GitHub Actions Workflow
+#  Target: Parent (allegisgroup) and Child (tgsv1) Tenancies
+# ===========================================================
+
+name: "Layer0-Core-LZ-Demo"
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - development
+
+env:
+  TF_VERSION: "1.7.5"
+  WORKING_DIR: "src/layer0/core-lz-local"
+  OCI_REGION: "us-ashburn-1"
+  OCI_PARENT_TENANCY: "ocid1.tenancy.oc1..aaaaaaaaawhowwgqzjjqhmnhkjumnmlegqfcock3v2f64scsembcnuz32iq"
+  OCI_CHILD_TENANCY: "ocid1.tenancy.oc1..aaaaaaaaelre24qykkdaengpbb2jcmfahlyg2zu32ywgtu2wbpo3fzf25cq"
+
+jobs:
+  terraform:
+    name: "Deploy Layer 0 Core-LZ"
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ env.WORKING_DIR }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ${{ env.TF_VERSION }}
+
+      - name: Terraform Init
+        run: |
+          terraform init \
+            -backend-config="region=${{ env.OCI_REGION }}" \
+            -backend-config="bucket=core-lz-demo-state" \
+            -backend-config="key=layer0-corelz.tfstate"
+
+      - name: Terraform Validate
+        run: terraform validate
+
+      - name: Terraform Plan
+        run: terraform plan -out=tfplan.out
+
+      - name: Upload Plan Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: tfplan
+          path: ${{ env.WORKING_DIR }}/tfplan.out
+
+      - name: Terraform Apply
+        if: github.ref == 'refs/heads/main'
+        run: terraform apply -auto-approve tfplan.out
