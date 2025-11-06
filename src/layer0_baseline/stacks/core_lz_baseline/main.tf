@@ -4,6 +4,27 @@
 #  notes: This module deploys the core Layer 0 Baseline using the
 # ======================================================================
 
-#########################################################
-# Layer 0 - Core Landing Zone Provider Configuration
-#########################################################
+terraform {
+  required_providers {
+    oci = {
+      source  = "oracle/oci"
+      version = ">= 5.0.0"
+    }
+  }
+}
+
+provider "oci" {
+  region = var.region
+}
+
+module "vcn" {
+  source                = "../terraform-oci-vcn"
+  tenancy_id            = var.tenancy_id
+  compartment_id        = var.compartment_id
+  label_prefix          = var.label_prefix
+  vcn_cidrs             = ["10.17.0.0/16"]
+  create_internet_gateway = true
+  create_nat_gateway      = true
+  create_service_gateway  = true
+}
+
