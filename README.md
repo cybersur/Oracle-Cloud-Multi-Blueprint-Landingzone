@@ -1,4 +1,4 @@
-# TGS OCI Landing Zone (Dev/Test)
+# Oracle OCI Cloud Multi-Blueprint Landing Zone with Orchestrator (Dev/Test)
 
 This repository defines the Terraform deployment structure for the TGS Dev/Test Tenant.
 
