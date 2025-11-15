@@ -1,0 +1,33 @@
+﻿{
+    "_metadata":  {
+                      "created_by":  "Dr. Rigoberto Garcia",
+                      "created_on":  "2025-10-22",
+                      "purpose":  "Blueprint Registry for Layer 0 Baseline Orchestrator",
+                      "notes":  "Part of the p-pm-tgs-oci-landingzone repository for Tek Systems Global Services."
+                  },
+    "registryVersion":  "1.0.0",
+    "layer":  "0",
+    "owner":  "Dr. Rigoberto Garcia",
+    "lastUpdated":  "2025-10-28",
+    "description":  "Defines all baseline blueprints registered under Layer 0 orchestrator control.",
+    "blueprints":  [
+                       {
+                           "id":  "core-lz",
+                           "name":  "Core Landing Zone Blueprint",
+                           "path":  "src/layer0_baseline/catalogs/core_lz/core_lz_blueprint.yaml",
+                           "purpose":  "Establishes shared network, security, and tenancy governance for OCI."
+                       },
+                       {
+                           "id":  "one-oe",
+                           "name":  "One-OE Blueprint",
+                           "path":  "src/layer0_baseline/catalogs/one_oe/one_oe_blueprint.yaml",
+                           "purpose":  "Deploys isolated operational environment for single tenant workloads."
+                       },
+                       {
+                           "id":  "multi-oe",
+                           "name":  "Multi-OE Blueprint",
+                           "path":  "src/layer0_baseline/catalogs/multi_oe/multi-oe-blueprint.yaml",
+                           "purpose":  "Supports multiple operational environments orchestrated from a single control plane."
+                       }
+                   ]
+}

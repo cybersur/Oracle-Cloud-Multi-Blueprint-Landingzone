@@ -1,0 +1,3 @@
+[submodule "src/layer0_baseline/catalogs/operating-entities/upstream"]
+	path = src/layer0_baseline/catalogs/operating-entities/upstream
+	url = https://github.com/oci-landing-zones/oci-landing-zone-operating-entities.git

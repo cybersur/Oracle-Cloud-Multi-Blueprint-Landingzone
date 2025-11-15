@@ -1,0 +1,2 @@
+./10_tf_init.sh
+./11_deploy_services.sh
